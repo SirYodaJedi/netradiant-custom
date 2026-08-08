@@ -395,11 +395,12 @@ static void ProcessWorldModel( entity_t& e ){
 	if( emitFlares ){
 		for ( const auto& light : entities )
 		{
-			/* get light */
-			if ( light.classname_is( "light" ) ) {
+			/* get light (or _flare, for non-light flares) */
+			if ( (light.classname_prefixed( "light" )) || (light.classname_is( "_flare" )) ) {
 				/* get flare shader */
 				const char *flareShader = nullptr;
-				if ( light.read_keyvalue( flareShader, "_flareshader" ) || light.boolForKey( "_flare" ) ) {
+				// _flare should always get flares, but lights should only get flares if specified
+				if ( light.read_keyvalue( flareShader, "_flareshader" ) || light.boolForKey( "_flare" ) || light.classname_is( "_flare" ) ) {
 					/* get specifics */
 					const Vector3 origin( light.vectorForKey( "origin" ) );
 					Vector3 color( light.vectorForKey( "_color" ) );

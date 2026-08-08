@@ -239,7 +239,7 @@ void SetLightStyles(){
 	{
 		entity_t& e = entities[ i ];
 
-		if ( !e.classname_prefixed( "light" ) ) {
+		if ( !e.classname_prefixed( "light" ) || !e.classname_is( "_flare" ) ) {
 			continue;
 		}
 		const char *t;
