@@ -59,6 +59,9 @@
 <h2 id="light">light value</h2>
 <p>Tells compiler to generate flare surface with default game flare shader. Value is not used, but must be present.</p>
 
+<h2 id="q3map_surfaceparmname">q3map_surfaceparmname</h2>
+<p>SoF2 compatibility: Acts the same as <i>surfaceparm surfaceparm</i>. For example, <i>q3map_origin</i> acts like <i>surfaceparm origin</i>.</p>
+
 <h2 id="q3map_alphaGen">q3map_alphaGen func</h2>
 <p>Currently takes a single function, <em>const</em>. This directive is used to set a surfaces vertex alpha values. q3map_alphaGen operations are applied to an object's vertexes so the <a href="stage-directives.html#alphaGenVertex">alphaGen vertex</a> directive is required for each affected stage.</p>
 
@@ -342,6 +345,11 @@ textures/eerie/ironcrosslt2_10000
 <p>Used on surface lights (see <a href="q3map-global-directives.html#q3map_surfaceLight">q3map_surfaceLight</a>). Controls maximum size, above which surface light source is split for uniform lighting. It defaults to 999 game units, but can be made larger or smaller as needed (for light surfaces at the bottom of cracks, for example). This can be a dominant factor in processing time for Q3Map2 lighting. Can have an increasingly "darker" effect when used with -fast. Compensate by raising the surface light value. For sky shaders, use <a href="q3map-global-directives.html#q3map_skylight">q3map_skylight</a> instead (see Appendix: <a href="light-emitting-shaders.html">Light Emitting Shaders</a>).</p>
 <p>Surface lights are also used for -bounce lighting with default starting subdivision value of 256. q3map_lightSubdivide controls this value too.</p>
 
+<!--
+<h2 id="q3map_material">q3map_material materialname</h2>
+<p>SoF2 material for footsteps. Same as <i>surfaceParm *mat_materialname.</i></p>
+-->
+
 <h2 id="q3map_noClip">q3map_noClip</h2>
 <p>You might have noticed that terrain has been made to not clip or t-junction anymore. It was causing too many issues, so a new parameter was added: q3map_noClip. Normally, Q3Map2 clips all faces to the BSP, and then takes the minimum polygon that encompasses all visible fragments. q3map_noClip forces Q3Map2 to uses the original brush faces (This is implicit for <a href="general-directives.html#deformVertexesAutosprite">autosprite(2)</a> surfaces). Therefore, if you map tidy, you could theoretically use q3map_noClip on all your shaders. q3map_noClip and <a href="q3map-global-directives.html#q3map_noTJunc">q3map_noTJunc</a>, when used in combination, will preserve mesh geometry exactly as you make it.</p>
 
@@ -371,6 +379,9 @@ textures/eerie/ironcrosslt2_10000
 
 <h2 id="q3map_offset">q3map_offset N.N</h2>
 <p>Offsets a surface along the vertex normals by N.N units. Used in <a href="cel-shading.html">celshading</a> for those black edges.</p>
+
+<h2 id="q3map_onlyVertexLighting">q3map_onlyVertexLighting</h2>
+<p>Surfaces using a shader with this parameter will always be vertex lit. This option can be used to reduce the lightmap data. It is often used on surfaces that don't need shadows.<br>Same as <a href="q3map-surface-parameter-directives.html#pointlight">surfaceparm pointlight</a>.</p>
 
 <h2 id="q3map_patchShadows">q3map_patchShadows</h2>
 <p>Obsolete! When this option is used in conjunction with the original lighting algorithm (-light), surfaces with textures modified with this option will show shadows that are cast by curve patches. Curve patches do not cast shadows by default. You would usually force patches to cast shadows by using the -patchshadows Q3Map2 switch.</p>

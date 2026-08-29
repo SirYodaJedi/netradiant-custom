@@ -299,6 +299,11 @@ textures/obsidian_video/intro
 <p>The alpha channel can be specified like the RGB channels. If not specified, it defaults to 1.0.</p>
 
 <h3>alphaGen lightingSpecular</h3>
+<p>Vertex alpha is dynamically computed from lightgrid BSP data using a standard specular coefficient equation. It also uses the vertex normals to illuminate the object correctly.</p>
+<blockquote>
+	<h4>Design Notes:</h4>
+	<p>alphaGen lightingSpecular is used when you want the alpha values to be computed for a dynamic model (such as for simulating specular highlights). It only functions on MD3 gamemodels (those loaded directly by the game, not baked into the BSP). They are namely items, characters, weapons, and models which are attached to movers via model2 key.</p>
+</blockquote>
 
 <h3>alphaGen wave</h3>
 <p>All <a href="shader-concepts.html#waveformfunctions">waveform functions</a> except <em>noise</em>.</p>
